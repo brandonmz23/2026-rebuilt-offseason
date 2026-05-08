@@ -60,15 +60,15 @@ public final class Constants {
     public static final boolean kRearRightTurningMotorOnBottom = true;
 
     // SPARK MAX CAN IDs
-    public static final int kFrontLeftDrivingCanId = 9;
-    public static final int kRearLeftDrivingCanId = 15;
-    public static final int kFrontRightDrivingCanId = 11;
-    public static final int kRearRightDrivingCanId = 13;
+    public static final int kFrontLeftDrivingCanId = 20;
+    public static final int kRearLeftDrivingCanId = 30;
+    public static final int kFrontRightDrivingCanId = 10;
+    public static final int kRearRightDrivingCanId = 40;
 
-    public static final int kFrontLeftTurningCanId = 8;
-    public static final int kRearLeftTurningCanId = 14;
-    public static final int kFrontRightTurningCanId = 10;
-    public static final int kRearRightTurningCanId = 12;
+    public static final int kFrontLeftTurningCanId = 21;
+    public static final int kRearLeftTurningCanId = 31;
+    public static final int kFrontRightTurningCanId = 11;
+    public static final int kRearRightTurningCanId = 41;
 
     public static final boolean kGyroReversed = false;
   }
@@ -115,4 +115,22 @@ public final class Constants {
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
   }
+
+  public static final class FloorSubsystemConstants{
+
+    public static final int kFloorMotorCanID = 3;
+    public static final int kFloorFollowerMotorCanID = 33;
+
+    public static final double kFloorP = 0.0; 
+    public static final double kFloorI = 0.0; 
+    public static final double kFloorD = 0.0; 
+
+    public static final class FloorMotorSetPoints{
+      public static double kFloorMotorFeed = .5; // for duty cycle
+      public static double kFloorMotorOut = -.5; // for duty cycle
+
+
+    }
+    }
+
 }
