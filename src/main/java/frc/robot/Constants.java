@@ -116,19 +116,23 @@ public final class Constants {
     public static final double kFreeSpeedRpm = 5676;
   }
 
+
+  // Constants below are for subsystems other than the drive.
+
   public static final class FloorSubsystemConstants{
 
     public static final int kFloorMotorCanID = 3;
     public static final int kFloorFollowerMotorCanID = 33;
 
-    public static final double kFloorP = 0.0; 
+    //PID control - tune as needed
+
+    public static final double kFloorP = 0.0; // for velocity, tune as needed 
     public static final double kFloorI = 0.0; 
     public static final double kFloorD = 0.0; 
 
     public static final class FloorMotorSetPoints{
-      public static double kFloorMotorFeed = .5; // for duty cycle
-      public static double kFloorMotorOut = -.5; // for duty cycle
-
+      public static double kFloorMotorFeed = 0; // for velocity, tune as needed
+      public static double kFloorMotorOut = 0; // for velocity, tune as needed
 
     }
     }

@@ -63,4 +63,28 @@ public final class Configs {
           .positionWrappingInputRange(0, turningFactor);
     }
   }
+
+  public final class FloorSubsystem{
+
+    public static final SparkMaxConfig floorMotorConfig = new SparkMaxConfig();
+    public static final SparkMaxConfig floorMotorFollowerConfig = new SparkMaxConfig();
+
+    static {
+      floorMotorConfig
+        .closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+        .p(Constants.FloorSubsystemConstants.kFloorP)
+        .i(Constants.FloorSubsystemConstants.kFloorI)
+        .d(Constants.FloorSubsystemConstants.kFloorD);
+
+        floorMotorConfig.idleMode(IdleMode.kCoast).smartCurrentLimit(20); // change stall limit if needed also Coast for free Roll !
+
+        floorMotorFollowerConfig.apply(floorMotorConfig).follow(Constants.FloorSubsystemConstants.kFloorFollowerMotorCanID, false); // shouldnt be inverted but can change if needed
+
+
+        
+    }
+
+
+
+  }
 }

@@ -6,6 +6,8 @@ import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.FloorSubsystemConstants;
@@ -30,8 +32,8 @@ public class FloorSubsystem extends SubsystemBase {
 
   }
 
-  public void setFloorVelocity(double v){
-    floorController.setSetpoint(v, ControlType.kVoltage); //voltage controlled
+  public void setFloorVelocity(double v){ //v is for velocity in RPM
+    floorController.setSetpoint(v, ControlType.kVelocity); //velocity controlled
   }
 
   public Command feedShooter(){
@@ -46,7 +48,10 @@ public class FloorSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-   
+
+    SmartDashboard.putNumber("Shooter | Floor | Applied Output", floorMotor.getEncoder().getVelocity());
+    SmartDashboard.putNumber("Shooter | FloorFollower | Applied Output", floorFollowerMotor.getEncoder().getVelocity());
+
 }
 } 
 
