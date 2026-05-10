@@ -117,7 +117,7 @@ public final class Constants {
   }
 
 
-  // Constants below are for subsystems other than the drive.
+  // Constants below are for subsystems other than the drive. Everything will be controlled by RPM and PID unless stated otherwise.
 
   public static final class FloorSubsystemConstants{
 
@@ -126,15 +126,49 @@ public final class Constants {
 
     //PID control - tune as needed
 
-    public static final double kFloorP = 0.0; // for velocity, tune as needed 
+    public static final double kFloorP = 0.0; 
     public static final double kFloorI = 0.0; 
     public static final double kFloorD = 0.0; 
 
     public static final class FloorMotorSetPoints{
-      public static double kFloorMotorFeed = 0; // for velocity, tune as needed
-      public static double kFloorMotorOut = 0; // for velocity, tune as needed
+      public static double kFloorMotorFeed = 0; 
+      public static double kFloorMotorOut = 0; 
 
     }
     }
+
+  public static final class IntakeSubsystemConstants{
+
+    public static final int kIntakeMotorCanID = 2;
+    public static final int kIntakeFollowerMotorCanID = 22;
+    public static final int kIntakeRackMotorCanID = 25;
+
+
+    //for intake rollers
+    public static final double kIntakeP = 0.0;
+    public static final double kIntakeI = 0.0;
+    public static final double kIntakeD = 0.0;
+
+
+    //for intake rack (this is position controlled)
+    public static final double kIntakeRackP = 0.0;
+    public static final double kIntakeRackI = 0.0;
+    public static final double kIntakeRackD = 0.0;
+
+    public static final class IntakeMotorSetPoints{
+
+      public static double kIntakeFeed = 0;
+      public static double kIntakeOut = 0; 
+
+      //PLEASE READ THIS BEFORE CHANGING OUT VALUES: slowly test out values 
+      public static double kIntakeRackOut = 0; // as name suggests, the intake will be going OUTWARDS
+      public static double kIntakeRackIn = 0; // as name suggests, the intake will be going INWARDS to the position 0
+
+
+    }
+
+
+    
+  }
 
 }

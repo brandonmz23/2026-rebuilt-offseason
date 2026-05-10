@@ -18,7 +18,7 @@ public class FloorSubsystem extends SubsystemBase {
 
 
     private final SparkMax floorMotor  = new SparkMax(FloorSubsystemConstants.kFloorMotorCanID, SparkMax.MotorType.kBrushless);;
-    private RelativeEncoder floorEncoder;
+    private RelativeEncoder floorEncoder = floorMotor.getEncoder();
     private SparkClosedLoopController floorController = floorMotor.getClosedLoopController();
     
     private final SparkMax floorFollowerMotor = new SparkMax(FloorSubsystemConstants.kFloorFollowerMotorCanID, SparkMax.MotorType.kBrushless);
@@ -27,13 +27,12 @@ public class FloorSubsystem extends SubsystemBase {
     floorMotor.configure(Configs.FloorSubsystem.floorMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     floorFollowerMotor.configure(Configs.FloorSubsystem.floorMotorFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-    floorEncoder = floorMotor.getEncoder();
     floorEncoder.setPosition(0);
 
   }
 
   public void setFloorVelocity(double v){ //v is for velocity in RPM
-    floorController.setSetpoint(v, ControlType.kVelocity); //velocity controlled
+    floorController.setSetpoint(v, ControlType.kVelocity); 
   }
 
   public Command feedShooter(){
@@ -49,8 +48,7 @@ public class FloorSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
 
-    SmartDashboard.putNumber("Shooter | Floor | Applied Output", floorMotor.getEncoder().getVelocity());
-    SmartDashboard.putNumber("Shooter | FloorFollower | Applied Output", floorFollowerMotor.getEncoder().getVelocity());
+    SmartDashboard.putNumber("Floor | Floor | Velocity", floorEncoder.getVelocity());
 
 }
 } 

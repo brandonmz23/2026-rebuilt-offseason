@@ -76,15 +76,38 @@ public final class Configs {
         .i(Constants.FloorSubsystemConstants.kFloorI)
         .d(Constants.FloorSubsystemConstants.kFloorD);
 
-        floorMotorConfig.idleMode(IdleMode.kCoast).smartCurrentLimit(20); // change stall limit if needed also Coast for free Roll !
-
+        floorMotorConfig.idleMode(IdleMode.kCoast).smartCurrentLimit(20); // change stall limit if needed also Coast for free roll
         floorMotorFollowerConfig.apply(floorMotorConfig).follow(Constants.FloorSubsystemConstants.kFloorFollowerMotorCanID, false); // shouldnt be inverted but can change if needed
 
+    }
 
-        
+  }
+
+  public final class IntakeSubsystem{
+
+    public static final SparkMaxConfig intakeMotorConfig = new SparkMaxConfig();
+    public static final SparkMaxConfig intakeFollowerMotorConfig = new SparkMaxConfig();
+    public static final SparkMaxConfig intakeRackMotorConfig = new SparkMaxConfig();
+
+    static{
+      intakeMotorConfig.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+      .p(Constants.IntakeSubsystemConstants.kIntakeP)
+      .i(Constants.IntakeSubsystemConstants.kIntakeI)
+      .d(Constants.IntakeSubsystemConstants.kIntakeD);
+
+      intakeMotorConfig.idleMode(IdleMode.kCoast).smartCurrentLimit(20); 
+      intakeFollowerMotorConfig.apply(intakeMotorConfig).follow(Constants.IntakeSubsystemConstants.kIntakeFollowerMotorCanID, false); 
+
+
+      intakeRackMotorConfig.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+      .p(Constants.IntakeSubsystemConstants.kIntakeRackP)
+      .i(Constants.IntakeSubsystemConstants.kIntakeRackI)
+      .d(Constants.IntakeSubsystemConstants.kIntakeRackD);
+
+      intakeRackMotorConfig.idleMode(IdleMode.kCoast).smartCurrentLimit(20); 
+
     }
 
 
-
-  }
+}
 }
