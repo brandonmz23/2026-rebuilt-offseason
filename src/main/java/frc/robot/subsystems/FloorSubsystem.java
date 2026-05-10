@@ -4,12 +4,16 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkBase.ControlType;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.FloorSubsystemConstants;
+import frc.robot.Constants.FloorSubsystemConstants.FloorMotorSetPoints;
 import frc.robot.Configs;
 
 public class FloorSubsystem extends SubsystemBase {
+
 
     private final SparkMax floorMotor  = new SparkMax(FloorSubsystemConstants.kFloorMotorCanID, SparkMax.MotorType.kBrushless);;
     private RelativeEncoder floorEncoder;
@@ -26,7 +30,19 @@ public class FloorSubsystem extends SubsystemBase {
 
   }
 
-  
+  public void setFloorVelocity(double v){
+    floorController.setSetpoint(v, ControlType.kVoltage); //voltage controlled
+  }
+
+  public Command feedShooter(){
+
+    return this.startEnd( 
+        () -> {
+        this.setFloorVelocity(FloorMotorSetPoints.kFloorMotorFeed);
+    }, () ->{
+        this.setFloorVelocity(0);
+        });
+    }
 
   @Override
   public void periodic() {
